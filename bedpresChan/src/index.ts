@@ -1,12 +1,12 @@
-import { connect, disconnect } from './database'
+import { connect } from "./database";
 
-import { IBedpres } from './models/bedpres'
+import { IBedpres } from "./models/bedpres";
 
-import { BEDPRES_SOURCES } from './bedpresSource'
+import { BEDPRES_SOURCES } from "./bedpresSource";
 
-import { startDiscordBot } from './discord'
+import { startDiscordBot } from "./discord";
 
-import { processBedpresList } from './bedpresDatabase'
+import { processBedpresList } from "./bedpresDatabase";
 
 //Connect to mongo
 /*
@@ -22,21 +22,28 @@ setInterval(mainLoop, 60*1000*30);
 
 mainLoop()*/
 
-connect()
+connect();
 const mainLoop = async () => {
-	let bedpresList: IBedpres[] = [];
-	for(let source of Object.keys(BEDPRES_SOURCES)) {
-		bedpresList = bedpresList.concat(await BEDPRES_SOURCES[source].fetchNewBedpresses());
-	}
-	
-	console.log("---Start processing bedpres---")
+  let bedpresList: IBedpres[] = [];
+  for (const source of Object.keys(BEDPRES_SOURCES)) {
+    bedpresList = bedpresList.concat(
+      await BEDPRES_SOURCES[source].fetchNewBedpresses()
+    );
+  }
 
-	await processBedpresList(bedpresList)	
+  console.log("---Start processing bedpres---");
 
-	console.log("Done, going to sleep")
-}
-setInterval(mainLoop, 60*1000*5);
+  await processBedpresList(bedpresList);
 
-mainLoop()
+  console.log("Done, going to sleep");
+};
 
 startDiscordBot()
+  .then(async () => {
+    await mainLoop();
+
+    setInterval(mainLoop, 60 * 1000 * 5);
+  })
+  .catch((err) => {
+    console.log(`Failed! ${err}`);
+  });

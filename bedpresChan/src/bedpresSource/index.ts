@@ -1,13 +1,13 @@
-import { Bedpres, IBedpres } from '../models/bedpres'
+import { IBedpres } from "../models/bedpres";
 
-import { OnlineBedpresFetcher } from './online'
+import { OnlineBedpresFetcher } from "./online";
 
 export interface BedpresSource {
-    name: string,
-    description: string,
-    fetchNewBedpresses: () => Promise<IBedpres[]>
+  name: string;
+  description: string;
+  fetchNewBedpresses: () => Promise<IBedpres[]>;
 }
 
 export const BEDPRES_SOURCES = {
-    Online: OnlineBedpresFetcher
-}
+  Online: OnlineBedpresFetcher,
+};

@@ -8,8 +8,6 @@ services:
       - db
     environment:
       MONGO_CONNECTION_URL: "mongodb://root:example@db:27017/admin?retryWrites=true&w=majority"
-#      DISCORD_WEBHOOK_URL: "https://canary.discordapp.com/api/webhooks/754074465083719820/bmu74r6rzHJqMoAvAjdGQAW7Z_FARlknbnKpLrusN1SJA38Amnh6BUbU6Z8ZcYWIogNR"
-      DISCORD_TOKEN: NzYxNzQzNzc1NDI0NTc3NTg2.X3fDLA.5-toYHtSis9Q4FICIzV6BMGUePs
     volumes:
       - ../../bedpresChan:/srv/bedpresChan
     logging:

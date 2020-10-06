@@ -1,0 +1,27 @@
+version: '2'
+services:
+  bot:
+    build:
+      context: ../../
+      dockerfile: docker/bedpresChan-prod/Bot.Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      MONGO_CONNECTION_URL: "mongodb://root:example@db:27017/admin?retryWrites=true&w=majority"
+    logging:
+      options:
+       max-size: "1g"
+  db:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: thisIsALongPassword
+    volumes:
+      - /srv/bedpresChan-v2:/data/db
+    logging:
+      options:
+       max-size: "1g"

@@ -55,10 +55,11 @@ export const AbakusBedpresFetcher: BedpresSource = {
       // date: eventData.pools[0].activationDate
       // name of Pool: eventData.pools[0].name
       let regStartObj: string | undefined;
-      for (const pool of eventData.pools) {
+      regStartCheck: for (const pool of eventData.pools) {
         for (const permissionGroup of pool.permissionGroups) {
           if (permissionGroup.name === "4. klasse Datateknologi") {
             regStartObj = pool.activationDate;
+            break regStartCheck;
           }
         }
       }

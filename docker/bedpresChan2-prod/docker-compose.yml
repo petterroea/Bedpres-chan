@@ -3,12 +3,13 @@ services:
   bot:
     build:
       context: ../../
-      dockerfile: docker/bedpresChan-prod/Bot.Dockerfile
+      dockerfile: docker/bedpresChan2-prod/Bot.Dockerfile
     restart: unless-stopped
     depends_on:
       - db
     environment:
-      MONGO_CONNECTION_URL: "mongodb://root:example@db:27017/admin?retryWrites=true&w=majority"
+      MONGO_CONNECTION_URL: "mongodb://root:thisIsALongPassword@db:27017/admin?retryWrites=true&w=majority"
+      DISCORD_TOKEN: "${DISCORD_TOKEN}"
     logging:
       options:
        max-size: "1g"

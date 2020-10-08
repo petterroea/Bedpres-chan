@@ -8,6 +8,7 @@ services:
       - db
     environment:
       MONGO_CONNECTION_URL: "mongodb://root:example@db:27017/admin?retryWrites=true&w=majority"
+      DISCORD_TOKEN: "${DISCORD_TOKEN}"
     volumes:
       - ../../bedpresChan:/srv/bedpresChan
     logging:

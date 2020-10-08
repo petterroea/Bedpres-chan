@@ -14,7 +14,7 @@ WORKDIR /srv/bedpresChan
 
 RUN yarn install --production && yarn cache clean
 
-COPY ./docker/bedpresChan-prod/startup.sh /srv/startup.sh
+COPY ./docker/bedpresChan2-prod/startup.sh /srv/startup.sh
 
 RUN ls -l && cat ../startup.sh
 

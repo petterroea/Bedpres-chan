@@ -1,5 +1,6 @@
 import { IBedpres } from "../models/bedpres";
 
+import { AbakusBedpresFetcher } from "./abakus";
 import { OnlineBedpresFetcher } from "./online";
 
 export interface BedpresSource {
@@ -10,4 +11,5 @@ export interface BedpresSource {
 
 export const BEDPRES_SOURCES = {
   Online: OnlineBedpresFetcher,
+  Abakus: AbakusBedpresFetcher,
 };
